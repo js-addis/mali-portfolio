@@ -1,14 +1,17 @@
 import React from 'react';
 import CustomDrawer from './components/CustomDrawer'
 import NavbarList from './components/NavbarList'
-import MalisAppBar from './components/MalisAppBar'
+import ButtonAppBar from './components/MalisAppBar'
 import MalisDisplayPage from './components/MalisDisplayPage'
 import { ThemeProvider, createTheme } from '@mui/material';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#009688'
+      main: '#bdbdbd'
+    },
+    secondary: {
+      main: '#eeeeee'
     }
   },
 }) 
@@ -43,7 +46,7 @@ class App extends React.Component {
             setPage2State={this.setPage2State}
             setPage3State={this.setPage3State}>
           </NavbarList>
-          <MalisAppBar/>
+          <ButtonAppBar/>
           <MalisDisplayPage
             page1State={this.state.page1State}
             page2State={this.state.page2State}

@@ -1,7 +1,7 @@
 // REACT
 import * as React from 'react';
 // MUI
-import { Typography, Box, List, ListItem, Button } from '@mui/material'
+import { Typography, Box, List, ListItem, ListItemText, Button, Tabs, Tab } from '@mui/material'
 // CUSTOM FUNCTIONS
 import useWindowDimensions from './WindowDimensions';
 
@@ -16,17 +16,26 @@ export default function NavbarList(props) {
 
   return (
     
-      <Box  sx={{ height: {height}, width: '250px', display: 'flex', position: 'fixed', backgroundColor: 'white'}}>
+      <Box  sx={{ height: {height}, width: '400px', display: 'flex', position: 'fixed', backgroundColor: 'white'}}>
         <Box sx={{ display: 'inline-block', margin: 'auto' }}>
           <List>
             <ListItem>
-              <Button onClick={setPage1State}>Page1</Button>
+              <Button>Mali's Item 1</Button>
             </ListItem>
             <ListItem>
-              <Button onClick={setPage2State}>Page2</Button>
+              <Button>Mali's Item 1</Button>
             </ListItem>
             <ListItem>
-              <Button onClick={setPage3State}>Page3</Button>
+              <Button>Mali's Item 1</Button>
+            </ListItem>
+            <ListItem>
+              <Button>Mali's Item 1</Button>
+            </ListItem>
+            <ListItem>
+              <Button>Mali's Item 1</Button>
+            </ListItem>
+            <ListItem>
+              <Button>Mali's Item 1</Button>
             </ListItem>
           </List>
         </Box>
