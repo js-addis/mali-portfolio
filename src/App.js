@@ -1,64 +1,48 @@
-import React from 'react';
-import CustomDrawer from './components/CustomDrawer'
-import NavbarList from './components/NavbarList'
-import ButtonAppBar from './components/MalisAppBar'
-import MalisDisplayPage from './components/MalisDisplayPage'
-import { ThemeProvider, createTheme } from '@mui/material';
+import React, { useState } from "react"
+import { Box, Divider } from '@mui/material';
+import './App.css';
+import About from './components/Pages/About';
+import Projects from "./components/Pages/Projects";
+import Journal from "./components/Pages/Journal";
+import ScrollingNavbar from "./components/ScrollingNavbar";
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#bdbdbd'
-    },
-    secondary: {
-      main: '#eeeeee'
-    }
-  },
-}) 
+function App() {
+const [ pageOneInViewport, setPageOneInViewport ] = useState(false);
+const [ pageTwoInViewport, setPageTwoInViewport ] = useState(false);
+const [ pageThreeInViewport, setPageThreeInViewport ] = useState(false);  
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      page1State: true,
-      page2State: false,
-      page3State: false
-    }
-  }
+  return (
+    <Box className="App">
 
-  setPage1State = () => {
-    this.setState( state => ({page1State: true, page2State: false, page3State: false}));
-  }
-  setPage2State = () => {
-    this.setState( state => ({page1State: false, page2State: true, page3State: false}));
-  }
-  setPage3State = () => {
-    this.setState( state => ({page1State: false, page2State: false, page3State: true}));
-  }
+      {/*<Box sx={{top: '100px', bottom: '100px', left: '160px', right: '160px', 
+                position: 'fixed', boxShadow: '0px 10px 10px grey', 
+                overflowY: 'scroll', backgroundColor: 'white'}}>*/}
+      
+        <ScrollingNavbar
+          pageOneInViewport={pageOneInViewport} 
+          pageTwoInViewport={pageTwoInViewport} 
+          pageThreeInViewport={pageThreeInViewport}>
+        </ScrollingNavbar>
+        
+        <Box sx={{paddingLeft: '450px', paddingRight: '290px', paddingTop: '50px', paddingBottom: '50px'}}>
+          
+          <About setPageOneInViewport={setPageOneInViewport}></About>
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header"></header>
-        <ThemeProvider theme={theme}>
-          <NavbarList
-            setPage1State={this.setPage1State}
-            setPage2State={this.setPage2State}
-            setPage3State={this.setPage3State}>
-          </NavbarList>
-          <ButtonAppBar/>
-          <MalisDisplayPage
-            page1State={this.state.page1State}
-            page2State={this.state.page2State}
-            page3State={this.state.page3State}
-            setPage1State={this.setPage1State}
-            setPage2State={this.setPage2State}
-            setPage3State={this.setPage3State}>
-          </MalisDisplayPage>
-        </ThemeProvider>
-      </div>
-    );
-  }
+          <Divider sx={{marginTop: '150px', marginBottom: '150px'}}/>
+
+          <Projects setPageTwoInViewport={setPageTwoInViewport}></Projects>
+
+          <Divider sx={{marginTop: '150px', marginBottom: '150px'}}/>
+
+          <Journal setPageThreeInViewport={setPageThreeInViewport}></Journal>
+
+          <Divider sx={{marginTop: '150px', marginBottom: '150px'}}/>
+
+        </Box>
+      </Box>
+    
+    /*</Box>*/
+  );
 }
 
 export default App;
