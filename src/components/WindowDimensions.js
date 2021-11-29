@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 function getWindowDimensions() {
   
   const width = window.innerWidth;
-  const height = window.innerHeight;
+  const height = window.innerHeight - 70;
   return {
     width,
     height

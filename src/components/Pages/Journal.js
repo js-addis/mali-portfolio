@@ -13,7 +13,7 @@ export default function Journal(props) {
     const options = {
         root: null,
         rootMargin: "0px",
-        threshold: 1.0
+        threshold: .5
     }
     const observer = new IntersectionObserver(callback, options)
     
@@ -23,7 +23,7 @@ export default function Journal(props) {
 
     return(
         <Box ref={ref}>
-            
+            <Box sx={{height: '500px'}}></Box>
         </Box>
     )
 }
