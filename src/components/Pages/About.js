@@ -2,24 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { Box, styled, Typography, Grid } from '@mui/material';
 
 export default function About(props) {
-
-    const setPageOneInViewport = props.setPageOneInViewport;
-    
-    const ref = useRef(null);
-    const callback = (entries) => {
-        const [ entry ] = entries
-        setPageOneInViewport(entry.isIntersecting)
-    }
-    const options = {
-        root: null,
-        rootMargin: "0px",
-        threshold: .7
-    }
-    const observer = new IntersectionObserver(callback, options)
-    
-    useEffect(() => {
-        observer.observe(ref.current);
-    })
+    // MUI CUSTOM COMPONENTS
     const Container = styled(Box)(({theme}) => ({
         paddingLeft: '450px', paddingRight: '170px', paddingTop: '130px', paddingBottom: '50px'
     }))
@@ -38,7 +21,7 @@ export default function About(props) {
 
 
     return(
-        <Container ref={ref}>
+        <Container>
             <Heading>
                 The Earth, as we treat it, is dispensable by
                 reason of an imperial paradigm that

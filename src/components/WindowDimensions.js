@@ -3,10 +3,16 @@ import { useState, useEffect } from 'react';
 function getWindowDimensions() {
   
   const width = window.innerWidth;
-  const height = window.innerHeight - 70;
+  const height = window.innerHeight;
+  const adjustedHeight = window.innerHeight - 70;
+  const modalHeight = window.innerHeight;
+  const modalWidth = window.innerWidth - 450;
   return {
     width,
-    height
+    height,
+    modalHeight,
+    modalWidth,
+    adjustedHeight
   };
 }
 

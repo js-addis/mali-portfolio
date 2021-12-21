@@ -3,26 +3,19 @@ import { List, ListItem, Button, Box, styled, Typography } from '@mui/material';
 import useWindowDimensions from './WindowDimensions';
 
 export default function ScrollingNavbar(props) {
-    const {height} = useWindowDimensions();
+    
+    const useAboutPage = props.useAboutPage;
+    const useProjectsPage = props.useProjectsPage;
+    const useJournalPage = props.useJournalPage;
 
-    const pageOneInViewport = props.pageOneInViewport;
-    const pageTwoInViewport = props.pageTwoInViewport;
-    const pageThreeInViewport = props.pageThreeInViewport;
-    const Heading = props.Heading;
+    const {adjustedHeight} = useWindowDimensions();
 
-    const ActiveButton = styled(Button)(({theme}) => ({
-        fontSize: '12px',
-        textTransform: 'lowercase',
-        color: theme.palette.primary.main,
-        textDecoration: 'underline', 
-        textDecorationColor: theme.palette.primary.main, 
-        textDecorationStyle: 'solid', 
-        textDecorationThickness: '1px',
-        fontFamily: 'IBM Plex Mono',
-        justifyContent: 'left',
-        paddingLeft: '0px'
+    const Heading = styled(Typography)(({theme}) => ({
+        fontFamily: 'IBM Plex Sans',
+        fontSize: '22px',
+        margin: 'auto',
     }))
-    const InactiveButton = styled(Button)(({theme}) => ({
+    const StyledButton = styled(Button)(({theme}) => ({
         fontSize: '12px',
         textTransform: 'lowercase',
         color: theme.palette.primary.main,
@@ -38,40 +31,31 @@ export default function ScrollingNavbar(props) {
         margin: 'auto',
         padding: '0px',
     }))
-    const NavContainer = styled(Box)(({theme}) => ({
+    const Container = styled(Box)(({theme}) => ({
         position: 'fixed',
         width: '470px', 
-        height: height, 
+        height: adjustedHeight, 
         display: 'flex', 
         flexDirection: 'column',
     }))
 
     return(
-        <NavContainer>  
+        <Container>  
             <StyledList disablePadding={true} dense={true}>
                 <Heading sx={{padding: '5px', paddingLeft: '0px'}}>
                     Native Systems
                 </Heading>    
-                <StyledListItem>{
-                    pageOneInViewport ? 
-                        <ActiveButton>+About</ActiveButton> : 
-                        <InactiveButton>+About</InactiveButton>
-                }
+                <StyledListItem>
+                    <StyledButton onClick={useAboutPage}>About</StyledButton>
                 </StyledListItem>
-                <StyledListItem>{
-                    pageTwoInViewport ? 
-                        <ActiveButton>+Projects</ActiveButton> : 
-                        <InactiveButton>+Projects</InactiveButton>
-                }
+                <StyledListItem>
+                    <StyledButton onClick={useProjectsPage}>Projects</StyledButton>
                 </StyledListItem>
-                <StyledListItem>{
-                    pageThreeInViewport ? 
-                        <ActiveButton>+Journal</ActiveButton> : 
-                        <InactiveButton>+Journal</InactiveButton>
-                }
+                <StyledListItem>
+                    <StyledButton onClick={useJournalPage}>Journal</StyledButton>
                 </StyledListItem>
             </StyledList>
-        </NavContainer>
+        </Container>
         
     )
 }

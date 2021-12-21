@@ -1,16 +1,39 @@
-import React, { useEffect, useState } from "react"
-import { Box, Divider, createTheme, ThemeProvider, styled, Typography } from '@mui/material';
+import React, { useEffect, useState, useRef } from "react"
+import { Box, createTheme, ThemeProvider } from '@mui/material';
 import './App.css';
 import About from './components/Pages/About';
 import Projects from "./components/Pages/Projects";
 import Journal from "./components/Pages/Journal";
 import ScrollingNavbar from "./components/ScrollingNavbar";
+import Project from './components/Project';
+import CustomModal from "./components/CustomModal";
 import WebFont from 'webfontloader';
+import useWindowDimensions from "./components/WindowDimensions";
 
 function App() {
-  const [ pageOneInViewport, setPageOneInViewport ] = useState(false);
-  const [ pageTwoInViewport, setPageTwoInViewport ] = useState(false);
-  const [ pageThreeInViewport, setPageThreeInViewport ] = useState(false);  
+
+  const {height, width} = useWindowDimensions();
+  
+  const [projectsPage, setProjectsPage] = useState(false);
+  const [aboutPage, setAboutPage] = useState(true);
+  const [journalPage, setJournalPage] = useState(false);
+
+  function useAboutPage() {
+    setAboutPage(true) 
+    setJournalPage(false)
+    setProjectsPage(false)}
+  function useProjectsPage() {
+    setAboutPage(false) 
+    setJournalPage(false) 
+    setProjectsPage(true)}
+  function useJournalPage() {
+    setAboutPage(false) 
+    setJournalPage(true) 
+    setProjectsPage(false)} 
+
+  const [modalOpen, setModalOpen] = useState('');
+  const handleModalOpen = () => setModalOpen(true)
+  const handleModalClose = () => setModalOpen(false);
 
   useEffect(() => {
     WebFont.load({
@@ -29,28 +52,33 @@ function App() {
       },
     },
   });
-  const Heading = styled(Typography)(({theme}) => ({
-    fontFamily: 'IBM Plex Sans',
-    fontSize: '22px',
-    margin: 'auto',
-  }))
+
+  const container = {
+    height: {height},
+    backgroundColor: 'white',
+    marginLeft: '470px',
+    display: 'flex',
+  }
 
   return (
     <ThemeProvider theme={theme}>
-      <Box>
+      <Box id="App">
+         <CustomModal
+            modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+            handleModalClose={handleModalClose}
+            handleModalOpen={handleModalOpen}
+         />
         {/* Scrolling Navbar <3 */}
         <ScrollingNavbar
-          Heading={Heading}
-          pageOneInViewport={pageOneInViewport} 
-          pageTwoInViewport={pageTwoInViewport} 
-          pageThreeInViewport={pageThreeInViewport}>
-        </ScrollingNavbar>
-        {/* About */}
-        <About setPageOneInViewport={setPageOneInViewport}></About>
-        {/* Projects */}
-        <Projects setPageTwoInViewport={setPageTwoInViewport}></Projects>
-        {/* Journal */}
-        <Journal setPageThreeInViewport={setPageThreeInViewport}></Journal>
+          useAboutPage={useAboutPage}
+          useProjectsPage={useProjectsPage}
+          useJournalPage={useJournalPage}
+        />
+        <Box sx={container}> {
+            aboutPage ? <About/> : projectsPage ? <Projects handleModalOpen={handleModalOpen}/> : journalPage ? <Journal/> : null
+        }
+        </Box>
       </Box>
     </ThemeProvider>
   );
