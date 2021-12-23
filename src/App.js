@@ -38,7 +38,7 @@ function App() {
   useEffect(() => {
     WebFont.load({
       google: {
-        families: ['IBM Plex Mono', 'IMB Plex Sans', 'IBM Plex Serif']
+        families: ['IBM Plex Mono', 'IBM Plex Sans', 'IBM Plex Serif']
       }
     })
   })
@@ -54,10 +54,10 @@ function App() {
   });
 
   const container = {
-    height: {height},
+    height: height,
     backgroundColor: 'white',
     marginLeft: '470px',
-    display: 'flex',
+    display: 'flex'
   }
 
   return (
@@ -75,9 +75,10 @@ function App() {
           useProjectsPage={useProjectsPage}
           useJournalPage={useJournalPage}
         />
-        <Box sx={container}> {
-            aboutPage ? <About/> : projectsPage ? <Projects handleModalOpen={handleModalOpen}/> : journalPage ? <Journal/> : null
-        }
+        <Box sx={container}>
+          {
+            aboutPage ? <About/> : projectsPage ? <Projects/> : journalPage ? <Journal/> : null
+          }
         </Box>
       </Box>
     </ThemeProvider>
