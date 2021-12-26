@@ -49,16 +49,6 @@ export default function Journal(props) {
             padding: '15px',
             textTransform: 'Capitalize'
         }
-        const modalStyle = {
-            position: 'fixed',
-            top: '0px',
-            left: '470px',
-            width: width,
-            height: height,
-            backgroundColor: 'white',
-            zIndex: 999,
-            overflowY: 'scroll'
-        }
         const articleContainer = {
             width: '700px',
             height: 'auto',
@@ -79,7 +69,7 @@ export default function Journal(props) {
             fontWeight: 'bold',
             justifyContent: 'center',
             textAlign: 'center',
-            color: 'grey'
+            color: '#757575'
         }
         const textStyle = {
             fontFamily: 'IBM Plex Serif',
@@ -89,6 +79,7 @@ export default function Journal(props) {
             width: '100%',
             marginBottom: '0px',
         }
+        // AUTHOR STAMP
         const authorStampContainer = {
             backgroundColor: 'orange'
         }
@@ -109,13 +100,22 @@ export default function Journal(props) {
             margin: 'auto',
             padding: '5px',
             border: '1px solid lightgrey',
-            
             textAlign: 'center',
             fontFamily: 'IBM Plex Mono',
             fontSize: '12px',
             color: '#9e9e9e'
         }
         function Modal(props) {
+            const modalStyle = {
+                position: 'fixed',
+                top: '0px',
+                left: '470px',
+                width: width,
+                height: height,
+                backgroundColor: 'white',
+                zIndex: 999,
+                overflowY: 'scroll'
+            }
             return (
                 <Box> {
                     modalOpen ?
@@ -165,30 +165,31 @@ export default function Journal(props) {
     } 
 
     // THIS IS WHERE YOU EDIT YOUR ARTICLES // 
+    // *title *name *date *image *captionText *articleText //
     return(
         <Box sx={container}>
             <Box sx={section}>
                 <SectionTitle title={'Philosophy'} />
                 <Article 
-                    title={'Uncomfortable Classroom Boners'}
+                    title={'Lorem Ipsum Dolor Sit Amet'}
                     name={'Jamaal Tribune'}
                     date={'June 2021'}
                     image={architecture1} 
                     captionText={'lorem ipsum dolor sit amet'}
                     articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
                 </Article>
-                <Article 
+                <Article
+                    title={'Lorem Ipsum Dolor Sit Amet'} 
                     name={'Jamaal Tribune'}
                     date={'June 2021'}
-                    title={'Are Smart Ovens the future of Fine Dining?'}
                     image={architecture2} 
                     captionText={'lorem ipsum dolor sit amet'}
                     articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
                 </Article>
                 <Article 
+                    title={'Lorem Ipsum Dolor Sit Amet'}
                     name={'Jamaal Tribune'}
                     date={'June 2021'}
-                    title={'Why We get Classroom Boners and how to stop having them (research)'}
                     image={architecture3} 
                     captionText={'lorem ipsum dolor sit amet'}
                     articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>

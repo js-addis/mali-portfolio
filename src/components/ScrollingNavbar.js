@@ -32,6 +32,9 @@ export default function ScrollingNavbar(props) {
         padding: '0px',
     }))
     const Container = styled(Box)(({theme}) => ({
+        [theme.breakpoints.down('sm')]: {
+            display: 'none'
+        },
         position: 'fixed',
         width: '470px', 
         height: adjustedHeight, 

@@ -5,8 +5,6 @@ import About from './components/Pages/About';
 import Projects from "./components/Pages/Projects";
 import Journal from "./components/Pages/Journal";
 import ScrollingNavbar from "./components/ScrollingNavbar";
-import Project from './components/Project';
-import CustomModal from "./components/CustomModal";
 import WebFont from 'webfontloader';
 import useWindowDimensions from "./components/WindowDimensions";
 
@@ -62,13 +60,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box id="App">
-         <CustomModal
-            modalOpen={modalOpen}
-            setModalOpen={setModalOpen}
-            handleModalClose={handleModalClose}
-            handleModalOpen={handleModalOpen}
-         />
+      <Box>
         {/* Scrolling Navbar <3 */}
         <ScrollingNavbar
           useAboutPage={useAboutPage}
