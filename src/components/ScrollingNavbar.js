@@ -1,6 +1,5 @@
 import React from 'react';
 import { List, ListItem, Button, Box, styled, Typography } from '@mui/material';
-import useWindowDimensions from './WindowDimensions';
 
 export default function ScrollingNavbar(props) {
     
@@ -8,20 +7,23 @@ export default function ScrollingNavbar(props) {
     const useProjectsPage = props.useProjectsPage;
     const useJournalPage = props.useJournalPage;
 
-    const {adjustedHeight} = useWindowDimensions();
+    const containerPosition = props.containerPosition
+    const mediumDisplay = props.mediumDisplay
+    const smallDisplay = props.smallDisplay
 
     const Heading = styled(Typography)(({theme}) => ({
-        fontFamily: 'IBM Plex Sans',
+        fontFamily: 'IBM Plex Serif',
         fontSize: '22px',
         margin: 'auto',
     }))
     const StyledButton = styled(Button)(({theme}) => ({
+        width: '100%',
         fontSize: '12px',
         textTransform: 'lowercase',
         color: theme.palette.primary.main,
         fontFamily:'IBM Plex Mono',
         justifyContent: 'left',
-        paddingLeft: '0px'
+        paddingLeft: '0px',
     }))
     const StyledListItem = styled(ListItem)(({theme}) => ({
         display: 'flex',
@@ -32,12 +34,21 @@ export default function ScrollingNavbar(props) {
         padding: '0px',
     }))
     const Container = styled(Box)(({theme}) => ({
-        [theme.breakpoints.down('sm')]: {
-            display: 'none'
+        [theme.breakpoints.down('xl')]: {
+            width: '470px'
         },
-        position: 'fixed',
+        [theme.breakpoints.down('lg')]: {
+            width: '300px'
+        },
+        [theme.breakpoints.down('md')]: {
+            display: mediumDisplay
+        },
+        [theme.breakpoints.down('sm')]: {
+            display: smallDisplay
+        },
+        position: containerPosition,
         width: '470px', 
-        height: adjustedHeight, 
+        height: window.innerHeight - 100, 
         display: 'flex', 
         flexDirection: 'column',
     }))
@@ -58,7 +69,6 @@ export default function ScrollingNavbar(props) {
                     <StyledButton onClick={useJournalPage}>Journal</StyledButton>
                 </StyledListItem>
             </StyledList>
-        </Container>
-        
+        </Container> 
     )
 }

@@ -1,32 +1,47 @@
 import React, { useState } from 'react';
-import { Box, Button, Typography } from '@mui/material';
-import useWindowDimensions from '../WindowDimensions';
+import { Box, Button, Typography, styled } from '@mui/material';
 
-// IMAGES
+// IMAGES //
 import architecture1 from '../images/architecture1.jpg';
 import architecture2 from '../images/architecture2.jpg';
 import architecture3 from '../images/architecture3.jpg';
-// IMAGES 
+// IMAGES //
 
 export default function Journal(props) {
 
-    const {height, width} = useWindowDimensions();
+    // MAIN COMPONENT
 
-    const container = {
+    const Container = styled(Box)(({theme}) => ({
+        [theme.breakpoints.down('lg')]: {
+
+        },
+        [theme.breakpoints.down('md')]: {
+            marginLeft: 'auto'
+        },
+        [theme.breakpoints.down('sm')]: {
+
+        },
         margin: 'auto',
         marginLeft: '0px',
-    }
-    const section = {
+        width: '100%',
+        
+    }))
+    const Section = styled(Box)(({theme}) => ({
+        [theme.breakpoints.down('md')]: {
+            width: '90%',
+            margin: 'auto',
+            border: 'none'
+        },  
         height: 'auto',
-        width: '700px',
-        border: '1px solid lightgrey',
-    }
-    const divider = {
+        width: '500px',
+        border: theme.border.primary.main,
         marginTop: '15px',
-        marginBottom: '15px'
-    }
+        marginBottom: '15px',
+        
+    }))
 
-// ARTICLE COMPONENT //
+    // ARTICLE COMPONENT //
+
     function Article(props) {
 
         const [modalOpen, setModalOpen] = useState(false)
@@ -40,102 +55,145 @@ export default function Journal(props) {
         const captionText = props.captionText
         const articleText = props.articleText
 
-        const buttonStyle = {
+        const ArticleButton = styled(Button)(({theme}) => ({
             width: '100%',
             height: '40px',
             margin: 'auto',
             justifyContent: 'left',
             fontFamily: 'IBM Plex Mono',
             padding: '15px',
-            textTransform: 'Capitalize'
-        }
-        const articleContainer = {
-            width: '700px',
-            height: 'auto',
-            marginBottom: '50px',
-            marginTop: '50px',
-            padding: '0px',
-            border: '1px solid lightgrey',
-        }
-        const divider = {
-            marginTop: '10px',
-            marginBottom: '10px'
-        }
-        const titleStyle = {
-            fontSize: '25px',
-            margin: '15px',
-            marginBottom: '5px',
-            fontFamily: 'IBM Plex Sans',
-            fontWeight: 'bold',
-            justifyContent: 'center',
-            textAlign: 'center',
-            color: '#757575'
-        }
-        const textStyle = {
-            fontFamily: 'IBM Plex Serif',
-            margin: '15px'
-        }
-        const imageStyle = {
-            width: '100%',
-            marginBottom: '0px',
-        }
-        // AUTHOR STAMP
-        const authorStampContainer = {
-            backgroundColor: 'orange'
-        }
-        const authorStampName = {
-            float: 'right', margin: '8px', marginRight: '20px', fontFamily: 'IBM Plex Sans', fontSize: '12px', color: '#9e9e9e'
-        }
-        const authorStampDate = {
-            float: 'left', margin: '8px', marginLeft: '20px', fontFamily: 'IBM Plex Sans', fontSize: '12px', color: '#9e9e9e'
-        }
-        // CAPTION
-        const captionContainer = {
-            top: '0px',
-            marginTop: '-4px',
-            vertcalAlign: 'top'
-        }
-        const caption = {
-            width: '65%',
-            margin: 'auto',
-            padding: '5px',
-            border: '1px solid lightgrey',
-            textAlign: 'center',
-            fontFamily: 'IBM Plex Mono',
-            fontSize: '12px',
-            color: '#9e9e9e'
-        }
+            textTransform: 'Capitalize',
+            color: theme.palette.primary.main
+        }))
+        const Date = styled(Box)(({theme}) => ({
+            position: 'absolute',
+            right: '10px',
+            color: theme.palette.secondary.main
+        }))
+
+        // MODAL COMPONENT //
+
         function Modal(props) {
-            const modalStyle = {
+
+            const ModalContainer = styled(Box)(({theme}) => ({
+                [theme.breakpoints.down('lg')]: {
+                    left: '300px'
+                },
+                [theme.breakpoints.down('md')]: {
+                    left: '0px',
+                    overflowX: 'hidden'
+                },
+                [theme.breakpoints.down('sm')]: {
+                    left: '0px',
+                },
                 position: 'fixed',
                 top: '0px',
                 left: '470px',
-                width: width,
-                height: height,
+                height: window.innerHeight,
+                width: window.innerWidth,
                 backgroundColor: 'white',
+                zIndex: 998,
+                overflowY: 'scroll',
+            }))
+            const ArticleContainer = styled(Box)(({theme}) => ({
+                [theme.breakpoints.down('md')]: {
+                    width: window.innerWidth,
+                    marginTop: '0px',
+                    marginBottom: '0px',
+                    overflowX: 'hidden',
+                    border: 'none'
+                },
+                width: '700px',
+                height: 'auto',
+                marginBottom: '50px',
+                marginTop: '50px',
+                padding: '0px',
+                border: theme.border.primary.main,
                 zIndex: 999,
-                overflowY: 'scroll'
-            }
+            }))
+            const Title = styled(Typography)(({theme}) => ({
+                [theme.breakpoints.down('md')]: {
+                    margin: '30px'
+                },
+                fontSize: '25px',
+                margin: '15px',
+                fontFamily: 'IBM Plex Sans',
+                fontWeight: 'bold',
+                justifyContent: 'center',
+                textAlign: 'center',
+                color: theme.palette.primary.main
+            }))
+            const ArticleText = styled(Typography)(({theme}) => ({
+                fontFamily: 'IBM Plex Serif',
+                margin: '15px',
+                color: theme.palette.primary.main
+            }))
+            const ImageContainer = styled(Box)(({theme}) => ({
+                width: '100%',
+                marginBottom: '0px',
+            }))
+            // AUTHOR STAMP
+            const AuthorStampContainer = styled(Box)(({theme}) => ({
+                backgroundColor: theme.palette.primary.main
+            }))
+            const AuthorStampName = styled(Box)(({theme}) => ({
+                float: 'right', 
+                margin: '8px', 
+                marginRight: '20px', 
+                fontFamily: 'IBM Plex Sans', 
+                fontSize: '12px', 
+                color: theme.palette.secondary.main
+            }))
+            const AuthorStampDate = styled(Box)(({theme}) => ({
+                float: 'left', 
+                margin: '8px', 
+                marginLeft: '20px', 
+                fontFamily: 'IBM Plex Sans', 
+                fontSize: '12px', 
+                color: theme.palette.secondary.main
+            }))
+            // CAPTION
+            const CaptionContainer = styled(Box)(({theme}) => ({
+                top: '0px',
+                marginTop: '-4px',
+                vertcalAlign: 'top'
+            }))
+            const CaptionText = styled(Typography)(({theme}) => ({
+                width: '65%',
+                margin: 'auto',
+                padding: '5px',
+                textAlign: 'center',
+                fontFamily: 'IBM Plex Mono',
+                fontSize: '12px',
+                border: theme.border.primary.main,
+                color: theme.palette.secondary.main
+            }))
+            // EXIT BUTTON
+            const ExitButton = styled(Box)(({theme}) => ({
+                color: theme.palette.secondary.main,
+                cursor: 'pointer',
+                padding: '17px',
+                paddingTop: '15px',
+                position: 'absolute',
+            }))
             return (
                 <Box> {
                     modalOpen ?
-                        <Box sx={modalStyle}>
-                            <Button sx={{padding: '0px', margin: '0px', justifyContent: 'left'}} onClick={handleModalClose}>X</Button>
-                            <Box sx={articleContainer}>
-                                <Box>
-                                    <Typography sx={titleStyle}>{title}</Typography>
-                                    <Box sx={authorStampContainer}>
-                                        <Box sx={authorStampDate}>{date}</Box>
-                                        <Box sx={authorStampName}>{name}</Box>
-                                    </Box>
-                                </Box>
-                                <img style={imageStyle} src={image} />
-                                <Box sx={captionContainer}>
-                                    <Box sx={caption}>{captionText}</Box>
-                                </Box>
-                                <Typography sx={textStyle}>{articleText}</Typography>
-                            </Box>
-                        </Box> 
+                        <ModalContainer>
+                            <ArticleContainer>
+                                <ExitButton onClick={handleModalClose}>X</ExitButton>
+                                <Title>{title}</Title>
+                                <AuthorStampContainer>
+                                    <AuthorStampDate>{date}</AuthorStampDate>
+                                    <AuthorStampName>{name}</AuthorStampName>
+                                </AuthorStampContainer>
+                                <ImageContainer component="img" src={image}/>
+                                <CaptionContainer>
+                                    <CaptionText>{captionText}</CaptionText>
+                                </CaptionContainer>
+                                <ArticleText>{articleText}</ArticleText>
+                            </ArticleContainer>
+                        </ModalContainer> 
                     : null 
                 } 
                 </Box>
@@ -144,34 +202,48 @@ export default function Journal(props) {
         return (
             <Box>
                 <Modal date={date} name={name}/>
-                <Button sx={buttonStyle} onClick={handleModalOpen}>{title}</Button>
+                <ArticleButton onClick={handleModalOpen}>{title}<Date>{date}</Date></ArticleButton>
             </Box>
             
         )
-    } // ARTICLE 
+    }
 
-    function SectionTitle(props) {
+    function SectionHeader(props) {
         const title = props.title
-        const style = {
+        const date = props.date
+        const Container = styled(Box)(({theme}) => ({
             width: '100%',
             height: 'auto',
-            padding: '10px',
-            borderBottom: '1px solid lightgrey',
-            fontFamily: 'IBM Plex Sans'
-        }
+            fontFamily: 'IBM Plex Sans',
+        }))
+        const Text = styled(Typography)(({theme}) => ({
+            fontFamily: 'IBM Plex Sans',
+            float: 'left',
+            left: '0px',
+            margin: '15px'
+        }))
+        const Date = styled(Typography)(({theme}) => ({
+            fontFamily: 'IBM Plex Sans',
+            float: 'right',
+            right: '0px',
+            margin: '15px'
+        }))
         return (
-            <Box sx={style}>{title}</Box>
+            <Container>
+                <Text>{title}</Text><Date>Date</Date>
+            </Container>
         )
     } 
 
     // THIS IS WHERE YOU EDIT YOUR ARTICLES // 
     // *title *name *date *image *captionText *articleText //
+    // <SectionHeader/> is the title of your group of articles //
     return(
-        <Box sx={container}>
-            <Box sx={section}>
-                <SectionTitle title={'Philosophy'} />
+        <Container>
+            <Section>
+                <SectionHeader title={'Philosophy'}/>
                 <Article 
-                    title={'Lorem Ipsum Dolor Sit Amet'}
+                    title={'Lorem Ipsum Dolor'}
                     name={'Jamaal Tribune'}
                     date={'June 2021'}
                     image={architecture1} 
@@ -179,7 +251,7 @@ export default function Journal(props) {
                     articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
                 </Article>
                 <Article
-                    title={'Lorem Ipsum Dolor Sit Amet'} 
+                    title={'Lorem Ipsum Dolor'} 
                     name={'Jamaal Tribune'}
                     date={'June 2021'}
                     image={architecture2} 
@@ -187,21 +259,41 @@ export default function Journal(props) {
                     articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
                 </Article>
                 <Article 
-                    title={'Lorem Ipsum Dolor Sit Amet'}
+                    title={'Lorem Ipsum Dolor'}
                     name={'Jamaal Tribune'}
                     date={'June 2021'}
                     image={architecture3} 
                     captionText={'lorem ipsum dolor sit amet'}
                     articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
                 </Article>
-            </Box>
-            <Box sx={divider}/>
-            <Box sx={section}>
-                <SectionTitle title={'Life Goals'} />
-                <Article title={'Article 1'} articleText={'I am Article 1'}/>
-                <Article title={'Article 2'} articleText={'I am Article 2'}/>
-                <Article title={'Article 3'} articleText={'I am Article 3'}/>
-            </Box>
-        </Box> 
+            </Section>
+            <Section>
+                <SectionHeader title={'Life Goals'}/>
+                <Article 
+                    title={'Lorem Ipsum Dolor'}
+                    name={'Jamaal Tribune'}
+                    date={'June 2021'}
+                    image={architecture1} 
+                    captionText={'lorem ipsum dolor sit amet'}
+                    articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
+                </Article>
+                <Article 
+                    title={'Lorem Ipsum Dolor'}
+                    name={'Jamaal Tribune'}
+                    date={'June 2021'}
+                    image={architecture1} 
+                    captionText={'lorem ipsum dolor sit amet'}
+                    articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
+                </Article>
+                <Article 
+                    title={'Lorem Ipsum Dolor'}
+                    name={'Jamaal Tribune'}
+                    date={'June 2021'}
+                    image={architecture1} 
+                    captionText={'lorem ipsum dolor sit amet'}
+                    articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
+                </Article>
+            </Section>
+        </Container> 
     )
 }

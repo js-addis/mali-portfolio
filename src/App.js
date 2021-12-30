@@ -1,17 +1,15 @@
-import React, { useEffect, useState, useRef } from "react"
-import { Box, createTheme, ThemeProvider } from '@mui/material';
+import React, { useEffect, useState } from "react"
+import { Box, createTheme, ThemeProvider, styled } from '@mui/material';
 import './App.css';
 import About from './components/Pages/About';
 import Projects from "./components/Pages/Projects";
 import Journal from "./components/Pages/Journal";
 import ScrollingNavbar from "./components/ScrollingNavbar";
 import WebFont from 'webfontloader';
-import useWindowDimensions from "./components/WindowDimensions";
+import CustomDrawer from './components/CustomDrawer';
 
 function App() {
 
-  const {height, width} = useWindowDimensions();
-  
   const [projectsPage, setProjectsPage] = useState(false);
   const [aboutPage, setAboutPage] = useState(true);
   const [journalPage, setJournalPage] = useState(false);
@@ -29,10 +27,6 @@ function App() {
     setJournalPage(true) 
     setProjectsPage(false)} 
 
-  const [modalOpen, setModalOpen] = useState('');
-  const handleModalOpen = () => setModalOpen(true)
-  const handleModalClose = () => setModalOpen(false);
-
   useEffect(() => {
     WebFont.load({
       google: {
@@ -41,6 +35,11 @@ function App() {
     })
   })
   const theme = createTheme({
+    border: {
+      primary: {
+        main: '1px solid #e0e0e0'
+      }
+    },
     palette: {
       primary: {
         main: '#757575'
@@ -51,12 +50,25 @@ function App() {
     },
   });
 
-  const container = {
-    height: height,
+  const PageContainer = styled(Box)(({theme}) => ({
+    [theme.breakpoints.down('xl')]: {
+      marginLeft: '470px'
+    },
+    [theme.breakpoints.down('lg')]: {
+      marginLeft: '300px'
+    },
+    [theme.breakpoints.down('md')]: {
+      marginLeft: '0px'
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '0px'
+    },
+    height: window.innerHeight,
     backgroundColor: 'white',
     marginLeft: '470px',
-    display: 'flex'
-  }
+    display: 'flex',
+    zIndex: 0
+  }))
 
   return (
     <ThemeProvider theme={theme}>
@@ -66,12 +78,18 @@ function App() {
           useAboutPage={useAboutPage}
           useProjectsPage={useProjectsPage}
           useJournalPage={useJournalPage}
+          containerPosition={'fixed'}
+          mediumDisplay={'none'}
+          smallDisplay={'none'}
         />
-        <Box sx={container}>
-          {
-            aboutPage ? <About/> : projectsPage ? <Projects/> : journalPage ? <Journal/> : null
-          }
-        </Box>
+        <PageContainer> 
+          <CustomDrawer
+            useAboutPage={useAboutPage}
+            useProjectsPage={useProjectsPage}
+            useJournalPage={useJournalPage}
+          />
+          { aboutPage ? <About/> : projectsPage ? <Projects/> : journalPage ? <Journal/> : null } 
+        </PageContainer>
       </Box>
     </ThemeProvider>
   );

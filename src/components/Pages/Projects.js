@@ -1,76 +1,105 @@
 import React, { useState } from 'react';
-import { Box, Button } from '@mui/material';
-
+import { Box, Button, styled } from '@mui/material';
 import architecture1 from '../images/architecture1.jpg';
-import useWindowDimensions from '../WindowDimensions';
 
 export default function Projects(props) {
 
-    const {height, width} = useWindowDimensions();
+   
 
     const [modalOpen, setModalOpen] = useState(false)
     const handleModalOpen = () => setModalOpen(true)
     const handleModalClose = () => setModalOpen(false)
 
-    const container = {
+    const Container = styled(Box)(({theme}) => ({
+        [theme.breakpoints.down('lg')]: {
+            marginLeft: 'auto',
+            justifyContent: 'center'
+        },
+        [theme.breakpoints.down('md')]: {
+            minWidth: '100%',
+            maxWidth: '100%',
+            marginLeft: 'auto',
+            justifyContent: 'center',
+        },
+        [theme.breakpoints.down('sm')]: {
+            
+        },
         margin: 'auto',
         marginLeft: '0px',
-
-        width: '800px',
+        minWidth: '730px',
+        maxWidth: '730px',
         height: 'auto',
-        
         display: 'flex',
-        justifyContent: 'left',
         flexFlow: 'row wrap',
-    }
+    }))
 
     function Project(props) {
         const title = props.title
         const image = props.image
         const text = props.text
 
-        const projectContainer = {
+        const ProjectContainer = styled(Box)(({theme}) => ({ 
             width: '220px',
             height: 'auto',
-            border: '1px solid lightgrey',
+            border: theme.border.primary.main,
             margin: '10px',
-            cursor: 'pointer'
-        }
-        const titleContainer = {
+            cursor: 'pointer',
+            flex: 1
+        }))
+        const TitleContainer = styled(Box)(({theme}) => ({
             fontFamily: 'IBM Plex Mono',
             padding: '20px',
             textAlign: 'center'
-        }
-        const imageStyle = {
+        }))
+        const ImageContainer = styled(Box)(({theme}) => ({
             width: '100%',
             height: '100px'
-        }
-        const textContainer = {
+        }))
+        const TextContainer = styled(Box)(({theme}) => ({
             fontFamily: 'IBM Plex Mono',
             padding: '10px',
             fontSize: '10px',
-            lineHeight: '200%'
-        }
+            lineHeight: '200%',
+            color: theme.palette.secondary.main
+        }))
         function Modal(props) {
-            const modalStyle = {
+            const ModalContainer = styled(Box)(({theme}) => ({
+                [theme.breakpoints.down('lg')]: {
+                    
+                },
+                [theme.breakpoints.down('md')]: {
+                    left: '0px',
+                },
+                [theme.breakpoints.down('sm')]: {
+                    left: '0px',
+                },
                 position: 'fixed',
                 top: '0px',
                 left: '470px',
-                width: width,
-                height: height,
-                backgroundColor: 'white',
+                width: window.innerWidth - 470,
+                height: window.innerHeight + 100,
                 zIndex: 999,
-                overflowY: 'scroll'
-            }
-            
+                overflowY: 'scroll',
+                backgroundColor: 'white'
+            }))
+            const ProjectContainer = styled(Box)(({theme}) => ({
+                width: '500px',
+                height: '500px',
+                margin: 'auto',
+                marginTop: '50px',
+                marginBottom: '50px',
+                border: theme.border.primary.main,
+                marginLeft: '0px'
+            }))
             return(
                 <Box> {
                     modalOpen ?
-                        <Box sx={modalStyle}>
+                        <ModalContainer>
                             <Button sx={{padding: '0px', margin: '0px', justifyContent: 'left'}} onClick={handleModalClose}>X</Button>
-                            <Box>{title}</Box>
-                            <Box>{text}</Box>
-                        </Box> 
+                            <ProjectContainer>
+                                <Box>{title}</Box>
+                            </ProjectContainer>
+                        </ModalContainer> 
                     : null 
                 } 
                 </Box>
@@ -79,17 +108,16 @@ export default function Projects(props) {
         return (
             <Box>
                 <Modal/>
-                <Box sx={projectContainer} onClick={handleModalOpen}>
-                    <Box sx={titleContainer}>{title}</Box>
-                    <img  style={imageStyle} src={image}></img>
-                    <Box sx={textContainer}>{text}</Box>
-                </Box>
+                <ProjectContainer onClick={handleModalOpen}>
+                    <TitleContainer>{title}</TitleContainer>
+                    <ImageContainer component="img" src={image}></ImageContainer>
+                    <TextContainer>{text}</TextContainer>
+                </ProjectContainer>
             </Box>
-            
         )
     }
     return(
-        <Box sx={container}>
+        <Container>
             <Project
                 title={'Lorem Ipsum'}
                 image={architecture1}
@@ -114,6 +142,6 @@ export default function Projects(props) {
                 title={'Lorem Ipsum'}
                 image={architecture1}
                 text={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}/>
-        </Box>
+        </Container>
     )
 }
