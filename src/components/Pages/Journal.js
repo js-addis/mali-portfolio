@@ -13,31 +13,53 @@ export default function Journal(props) {
 
     const Container = styled(Box)(({theme}) => ({
         [theme.breakpoints.down('lg')]: {
-
+                 
         },
         [theme.breakpoints.down('md')]: {
-            marginLeft: 'auto'
+            
         },
         [theme.breakpoints.down('sm')]: {
+            paddingTop: '70px',
+            paddingBottom: '100px'
+        },
+        [theme.breakpoints.up('lg')]: {
+            
+        },
+        [theme.breakpoints.up('md')]: {
+
+        },
+        [theme.breakpoints.up('sm')]: {
 
         },
         margin: 'auto',
         marginLeft: '0px',
         width: '100%',
-        
     }))
     const Section = styled(Box)(({theme}) => ({
+        [theme.breakpoints.down('lg')]: {
+                    
+        },
         [theme.breakpoints.down('md')]: {
-            width: '90%',
             margin: 'auto',
-            border: 'none'
+            marginBottom: '15px'
+        },
+        [theme.breakpoints.down('sm')]: {
+            width: '95%'
+        },
+        [theme.breakpoints.up('lg')]: {
+            
+        },
+        [theme.breakpoints.up('md')]: {
+
+        },
+        [theme.breakpoints.up('sm')]: {
+
         },  
         height: 'auto',
         width: '500px',
         border: theme.border.primary.main,
         marginTop: '15px',
         marginBottom: '15px',
-        
     }))
 
     // ARTICLE COMPONENT //
@@ -77,31 +99,51 @@ export default function Journal(props) {
 
             const ModalContainer = styled(Box)(({theme}) => ({
                 [theme.breakpoints.down('lg')]: {
-                    left: '300px'
+                    left: '300px',
                 },
                 [theme.breakpoints.down('md')]: {
                     left: '0px',
-                    overflowX: 'hidden'
+                    width: '100%'
                 },
                 [theme.breakpoints.down('sm')]: {
-                    left: '0px',
+        
+                },
+                [theme.breakpoints.up('lg')]: {
+                    
+                },
+                [theme.breakpoints.up('md')]: {
+                    width: '100%'
+                },
+                [theme.breakpoints.up('sm')]: {
+                    
                 },
                 position: 'fixed',
                 top: '0px',
                 left: '470px',
                 height: window.innerHeight,
-                width: window.innerWidth,
+                width: '100%',
                 backgroundColor: 'white',
                 zIndex: 998,
                 overflowY: 'scroll',
             }))
             const ArticleContainer = styled(Box)(({theme}) => ({
+                [theme.breakpoints.down('lg')]: {
+                    
+                },
                 [theme.breakpoints.down('md')]: {
-                    width: window.innerWidth,
-                    marginTop: '0px',
-                    marginBottom: '0px',
-                    overflowX: 'hidden',
+                    margin: 'auto',
+                },
+                [theme.breakpoints.down('sm')]: {
+                    width: '100%',
                     border: 'none'
+                },
+                [theme.breakpoints.up('lg')]: {
+                    
+                },
+                [theme.breakpoints.up('md')]: {
+                },
+                [theme.breakpoints.up('sm')]: {
+
                 },
                 width: '700px',
                 height: 'auto',
@@ -112,16 +154,33 @@ export default function Journal(props) {
                 zIndex: 999,
             }))
             const Title = styled(Typography)(({theme}) => ({
+                [theme.breakpoints.down('lg')]: {
+                    
+                },
                 [theme.breakpoints.down('md')]: {
-                    margin: '30px'
+
+                },
+                [theme.breakpoints.down('sm')]: {
+                    paddingTop: '35px',
+                    paddingBottom: '15px'
+                },
+                [theme.breakpoints.up('lg')]: {
+                    
+                },
+                [theme.breakpoints.up('md')]: {
+
+                },
+                [theme.breakpoints.up('sm')]: {
+
                 },
                 fontSize: '25px',
-                margin: '15px',
+                paddingTop: '25px',
                 fontFamily: 'IBM Plex Sans',
                 fontWeight: 'bold',
                 justifyContent: 'center',
                 textAlign: 'center',
-                color: theme.palette.primary.main
+                color: theme.palette.primary.main,
+                backgroundColor: 'white'
             }))
             const ArticleText = styled(Typography)(({theme}) => ({
                 fontFamily: 'IBM Plex Serif',
@@ -170,11 +229,15 @@ export default function Journal(props) {
             }))
             // EXIT BUTTON
             const ExitButton = styled(Box)(({theme}) => ({
+                [theme.breakpoints.down('sm')]: {
+                    top: 0
+                },
                 color: theme.palette.secondary.main,
                 cursor: 'pointer',
-                padding: '17px',
-                paddingTop: '15px',
+                padding: '10px',
+                paddingTop: '6px',
                 position: 'absolute',
+                marginTop: '0px',
             }))
             return (
                 <Box> {
@@ -204,13 +267,13 @@ export default function Journal(props) {
                 <Modal date={date} name={name}/>
                 <ArticleButton onClick={handleModalOpen}>{title}<Date>{date}</Date></ArticleButton>
             </Box>
-            
         )
     }
 
+    // SECTION HEADER
+
     function SectionHeader(props) {
         const title = props.title
-        const date = props.date
         const Container = styled(Box)(({theme}) => ({
             width: '100%',
             height: 'auto',
@@ -237,7 +300,7 @@ export default function Journal(props) {
 
     // THIS IS WHERE YOU EDIT YOUR ARTICLES // 
     // *title *name *date *image *captionText *articleText //
-    // <SectionHeader/> is the title of your group of articles //
+    // <SectionHeader/> is the title of each group of articles //
     return(
         <Container>
             <Section>
@@ -266,6 +329,14 @@ export default function Journal(props) {
                     captionText={'lorem ipsum dolor sit amet'}
                     articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
                 </Article>
+                <Article 
+                    title={'Lorem Ipsum Dolor'}
+                    name={'Jamaal Tribune'}
+                    date={'June 2021'}
+                    image={architecture1} 
+                    captionText={'lorem ipsum dolor sit amet'}
+                    articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
+                </Article>
             </Section>
             <Section>
                 <SectionHeader title={'Life Goals'}/>
@@ -291,6 +362,57 @@ export default function Journal(props) {
                     date={'June 2021'}
                     image={architecture1} 
                     captionText={'lorem ipsum dolor sit amet'}
+                    articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
+                </Article>
+                <Article 
+                    title={'Lorem Ipsum Dolor'}
+                    name={'Jamaal Tribune'}
+                    date={'June 2021'}
+                    image={architecture1} 
+                    captionText={'lorem ipsum dolor sit amet'}
+                    articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
+                </Article>
+                <Article 
+                    title={'Lorem Ipsum Dolor'}
+                    name={'Jamaal Tribune'}
+                    date={'June 2021'}
+                    image={architecture1} 
+                    captionText={'lorem ipsum dolor sit amet'}
+                    articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
+                </Article>
+            </Section>
+            <Section>
+                <SectionHeader title={'Work Study'}/>
+                <Article 
+                    title={"I Don't Like Working"}
+                    name={'Jamaal Tribune'}
+                    date={'December 2021'}
+                    image={architecture1} 
+                    captionText={'lololololololol'}
+                    articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
+                </Article>
+                <Article 
+                    title={"Random Access Memory"}
+                    name={'Jamaal Tribune'}
+                    date={'January 2022'}
+                    image={architecture1} 
+                    captionText={'lololololololol'}
+                    articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
+                </Article>
+                <Article 
+                    title={"I Don't Like Working"}
+                    name={'Jamaal Tribune'}
+                    date={'December 2021'}
+                    image={architecture1} 
+                    captionText={'lololololololol'}
+                    articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
+                </Article>
+                <Article 
+                    title={"Random Access Memory"}
+                    name={'Jamaal Tribune'}
+                    date={'January 2022'}
+                    image={architecture1} 
+                    captionText={'lololololololol'}
                     articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
                 </Article>
             </Section>

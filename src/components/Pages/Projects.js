@@ -12,7 +12,7 @@ export default function Projects(props) {
 
     const Container = styled(Box)(({theme}) => ({
         [theme.breakpoints.down('lg')]: {
-            marginLeft: 'auto',
+            marginLeft: '0px',
             justifyContent: 'center'
         },
         [theme.breakpoints.down('md')]: {
@@ -22,7 +22,7 @@ export default function Projects(props) {
             justifyContent: 'center',
         },
         [theme.breakpoints.down('sm')]: {
-            
+            overflowX: 'hidden'
         },
         margin: 'auto',
         marginLeft: '0px',
@@ -31,6 +31,7 @@ export default function Projects(props) {
         height: 'auto',
         display: 'flex',
         flexFlow: 'row wrap',
+        zIndex: 1
     }))
 
     function Project(props) {
@@ -39,6 +40,26 @@ export default function Projects(props) {
         const text = props.text
 
         const ProjectContainer = styled(Box)(({theme}) => ({ 
+            [theme.breakpoints.down('lg')]: {
+
+            },
+            [theme.breakpoints.down('md')]: {
+
+            },
+            [theme.breakpoints.down('sm')]: {
+                width: '100%',
+                margin: 'auto',
+                marginBottom: '10px',
+            },
+            [theme.breakpoints.up('lg')]: {
+
+            },
+            [theme.breakpoints.up('md')]: {
+
+            },
+            [theme.breakpoints.up('sm')]: {
+
+            },
             width: '220px',
             height: 'auto',
             border: theme.border.primary.main,
@@ -47,15 +68,27 @@ export default function Projects(props) {
             flex: 1
         }))
         const TitleContainer = styled(Box)(({theme}) => ({
+            [theme.breakpoints.down('sm')]: {
+                fontSize: '25px',
+                padding: '30px'
+            },
             fontFamily: 'IBM Plex Mono',
             padding: '20px',
             textAlign: 'center'
         }))
         const ImageContainer = styled(Box)(({theme}) => ({
+            [theme.breakpoints.down('sm')]: {
+                height: '250px'
+            },
             width: '100%',
             height: '100px'
         }))
         const TextContainer = styled(Box)(({theme}) => ({
+            [theme.breakpoints.down('sm')]: {
+                fontSize: '12px',
+                padding: '15px',
+                lineHeight: '200%'
+            },
             fontFamily: 'IBM Plex Mono',
             padding: '10px',
             fontSize: '10px',
@@ -77,7 +110,7 @@ export default function Projects(props) {
                 top: '0px',
                 left: '470px',
                 width: window.innerWidth - 470,
-                height: window.innerHeight + 100,
+                height: '100%',
                 zIndex: 999,
                 overflowY: 'scroll',
                 backgroundColor: 'white'

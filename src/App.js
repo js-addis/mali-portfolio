@@ -42,10 +42,10 @@ function App() {
     },
     palette: {
       primary: {
-        main: '#757575'
+        main: '#616161'
       },
       secondary: {
-        main: '#9e9e9e',
+        main: '#757575',
       },
     },
   });
@@ -75,6 +75,9 @@ function App() {
       <Box>
         {/* Scrolling Navbar <3 */}
         <ScrollingNavbar
+          aboutPage={aboutPage}
+          projectsPage={projectsPage}
+          journalPage={journalPage}
           useAboutPage={useAboutPage}
           useProjectsPage={useProjectsPage}
           useJournalPage={useJournalPage}
@@ -84,6 +87,9 @@ function App() {
         />
         <PageContainer> 
           <CustomDrawer
+            aboutPage={aboutPage}
+            projectsPage={projectsPage}
+            journalPage={journalPage}
             useAboutPage={useAboutPage}
             useProjectsPage={useProjectsPage}
             useJournalPage={useJournalPage}

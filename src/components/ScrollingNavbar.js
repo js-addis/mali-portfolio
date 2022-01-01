@@ -2,6 +2,10 @@ import React from 'react';
 import { List, ListItem, Button, Box, styled, Typography } from '@mui/material';
 
 export default function ScrollingNavbar(props) {
+
+    const aboutPage = props.aboutPage
+    const projectsPage = props.projectsPage
+    const journalPage = props.journalPage
     
     const useAboutPage = props.useAboutPage;
     const useProjectsPage = props.useProjectsPage;
@@ -16,7 +20,7 @@ export default function ScrollingNavbar(props) {
         fontSize: '22px',
         margin: 'auto',
     }))
-    const StyledButton = styled(Button)(({theme}) => ({
+    const InactiveButton = styled(Box)(({theme}) => ({
         width: '100%',
         fontSize: '12px',
         textTransform: 'lowercase',
@@ -25,48 +29,78 @@ export default function ScrollingNavbar(props) {
         justifyContent: 'left',
         paddingLeft: '0px',
     }))
+    const ActiveButton = styled(Box)(({theme}) => ({
+        width: '100%',
+        fontSize: '12px',
+        textTransform: 'lowercase',
+        color: theme.palette.primary.main,
+        fontFamily:'IBM Plex Mono',
+        justifyContent: 'left',
+        paddingLeft: '0px',
+        textDecoration: 'underline'
+    }))
     const StyledListItem = styled(ListItem)(({theme}) => ({
         display: 'flex',
-        padding: '0px',
+        padding: '2px',
+        marginTop: '3px',
+        marginBottom: '3px', 
+        cursor: 'pointer',
+        width: '100%'
     }))
     const StyledList = styled(List)(({theme}) => ({
         margin: 'auto',
         padding: '0px',
     }))
     const Container = styled(Box)(({theme}) => ({
-        [theme.breakpoints.down('xl')]: {
-            width: '470px'
-        },
         [theme.breakpoints.down('lg')]: {
             width: '300px'
         },
         [theme.breakpoints.down('md')]: {
-            display: mediumDisplay
+            display: mediumDisplay,
         },
         [theme.breakpoints.down('sm')]: {
             display: smallDisplay
+        },
+        [theme.breakpoints.up('lg')]: {
+            
+        },
+        [theme.breakpoints.up('md')]: {
+            
+        },
+        [theme.breakpoints.up('sm')]: {
+
         },
         position: containerPosition,
         width: '470px', 
         height: window.innerHeight - 100, 
         display: 'flex', 
         flexDirection: 'column',
+        backgroundColor: 'white'
     }))
 
     return(
         <Container>  
-            <StyledList disablePadding={true} dense={true}>
+            <StyledList>
                 <Heading sx={{padding: '5px', paddingLeft: '0px'}}>
                     Native Systems
                 </Heading>    
-                <StyledListItem>
-                    <StyledButton onClick={useAboutPage}>About</StyledButton>
+                <StyledListItem>{
+                    aboutPage ? 
+                        <ActiveButton onClick={useAboutPage}>About</ActiveButton> :
+                        <InactiveButton onClick={useAboutPage}>About</InactiveButton>
+                }    
                 </StyledListItem>
-                <StyledListItem>
-                    <StyledButton onClick={useProjectsPage}>Projects</StyledButton>
+                <StyledListItem>{
+                    projectsPage ? 
+                        <ActiveButton onClick={useProjectsPage}>Projects</ActiveButton> :
+                        <InactiveButton onClick={useProjectsPage}>Projects</InactiveButton>
+                }    
                 </StyledListItem>
-                <StyledListItem>
-                    <StyledButton onClick={useJournalPage}>Journal</StyledButton>
+                <StyledListItem>{
+                    journalPage ? 
+                        <ActiveButton onClick={useJournalPage}>Journal</ActiveButton> :
+                        <InactiveButton onClick={useJournalPage}>Journal</InactiveButton>
+                }    
                 </StyledListItem>
             </StyledList>
         </Container> 

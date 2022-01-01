@@ -4,8 +4,13 @@ import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 
 import ScrollingNavbar from './ScrollingNavbar';
+import zIndex from '@mui/material/styles/zIndex';
 
 export default function CustomDrawer(props) {
+
+  const aboutPage = props.aboutPage
+  const projectsPage = props.projectsPage
+  const journalPage = props.journalPage
 
   const useAboutPage = props.useAboutPage;
   const useProjectsPage = props.useProjectsPage;
@@ -24,17 +29,24 @@ export default function CustomDrawer(props) {
         display: 'block'
     }, 
     [theme.breakpoints.down('sm')]: {
-
+        display: 'block',
+        margin: 'none'
     },
     position: 'fixed',
-    display: 'none'
+    display: 'none',
+    left: '10px',
+    top: '7px',
+    border: theme.border.primary.main
   }))
 
   return (
     <Box>
-        <HamburgerButton onClick={handleOpen}>Open</HamburgerButton>
+        <HamburgerButton onClick={handleOpen}>/</HamburgerButton>
         <Drawer open={open} onClose={handleClose} anchor="left">
-            <ScrollingNavbar 
+            <ScrollingNavbar
+                aboutPage={aboutPage}
+                projectsPage={projectsPage}
+                journalPage={journalPage} 
                 useAboutPage={useAboutPage}
                 useProjectsPage={useProjectsPage}
                 useJournalPage={useJournalPage}

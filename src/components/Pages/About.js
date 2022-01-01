@@ -13,7 +13,7 @@ export default function About(props) {
             margin: 'auto'
         },
         [theme.breakpoints.down('sm')]: {
-
+            border: 'none'
         },
         width: '500px',
         height: '500px',
