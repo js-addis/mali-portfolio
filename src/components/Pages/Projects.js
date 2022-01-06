@@ -110,7 +110,7 @@ export default function Projects(props) {
                 top: '0px',
                 left: '470px',
                 width: window.innerWidth - 470,
-                height: '100%',
+                height: window.innerHeight + '300px',
                 zIndex: 999,
                 overflowY: 'scroll',
                 backgroundColor: 'white'

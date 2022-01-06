@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Typography, styled } from '@mui/material';
+
 
 // IMAGES //
 import architecture1 from '../images/architecture1.jpg';
@@ -8,6 +9,8 @@ import architecture3 from '../images/architecture3.jpg';
 // IMAGES //
 
 export default function Journal(props) {
+
+
 
     // MAIN COMPONENT
 
@@ -97,6 +100,17 @@ export default function Journal(props) {
 
         function Modal(props) {
 
+            {/*const [height, setHeight] = useState({
+                height: window.innherHeight
+            });
+
+            useEffect(() => {
+                function handleResize() {
+                    setHeight({height: window.innerHeight})
+                }
+                window.addEventListener("resize", handleResize());
+            })*/}
+
             const ModalContainer = styled(Box)(({theme}) => ({
                 [theme.breakpoints.down('lg')]: {
                     left: '300px',
@@ -106,7 +120,7 @@ export default function Journal(props) {
                     width: '100%'
                 },
                 [theme.breakpoints.down('sm')]: {
-        
+                    
                 },
                 [theme.breakpoints.up('lg')]: {
                     
@@ -242,7 +256,7 @@ export default function Journal(props) {
             return (
                 <Box> {
                     modalOpen ?
-                        <ModalContainer>
+                        <ModalContainer id="modal-container">
                             <ArticleContainer>
                                 <ExitButton onClick={handleModalClose}>X</ExitButton>
                                 <Title>{title}</Title>
@@ -311,7 +325,7 @@ export default function Journal(props) {
                     date={'June 2021'}
                     image={architecture1} 
                     captionText={'lorem ipsum dolor sit amet'}
-                    articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
+                    articleText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}>
                 </Article>
                 <Article
                     title={'Lorem Ipsum Dolor'} 
