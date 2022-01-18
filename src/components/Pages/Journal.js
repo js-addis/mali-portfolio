@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Box, Button, Typography, styled } from '@mui/material';
 
 
@@ -9,7 +9,6 @@ import architecture3 from '../images/architecture3.jpg';
 // IMAGES //
 
 export default function Journal(props) {
-
 
 
     // MAIN COMPONENT
@@ -120,7 +119,7 @@ export default function Journal(props) {
                     width: '100%'
                 },
                 [theme.breakpoints.down('sm')]: {
-                    
+                    height: '3000px'
                 },
                 [theme.breakpoints.up('lg')]: {
                     
